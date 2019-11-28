@@ -1,0 +1,79 @@
+{% extends 'stafftemplates/staffbase.html' %}
+
+{% block css %}
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-3">
+        <h4>All Tasks</h4>
+        {% for task in tasklist %}
+            <li><a href="{% url 'taskapp:stafftaskdetail' task.id %}">{{task.title}}</a></li>
+        {% endfor %}
+    </div>
+    <div class="col-md-9">
+        <h3 class="text-center bg-info p-1 text-white">Task: {{task.title}}</h3>
+
+        <table class="table table-bordered table-striped" style="width: 100%;">
+            <tbody>
+                <tr>
+                    <th>Assigned by</th>
+                    <td>{{task.assigned_by}}</td>
+                </tr>
+                <tr>
+                    <th>Assigned Date</th>
+                    <td>{{task.assigned_date}}({{task.assigned_date|timesince}} ago)</td>
+                </tr>
+                <tr>
+                    <th>Task Status</th>
+                    <td id="status">{{task.status}}</td>
+                </tr>
+                <tr>
+                    <th>Description</th> 
+                    <td>{{task.description|safe}}</td>
+                </tr>
+                <tr>
+                    <th>Deadline</th> 
+                    <td>{{task.deadline}}({{task.deadline|timeuntil}} remaining)</td>
+                </tr>
+                
+            </tbody>
+        </table>   
+        <label for="task-action"> Change Tasks Status</label>
+        <select id="task-action">
+            <option value="Pending">Pending</option>
+            <option value="Processing">Processing</option>
+            <option value="Completed">Completed</option>
+        </select>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+{% block js %}
+<script>
+    $(document).ready(function(){
+        $('#task-action').val("{{task.status}}")
+        $('#task-action').on('change', function(){
+            var status = $(this).val();
+            $.ajax({
+                method: "get",
+                url: "{% url 'taskapp:stafftaskupdate' task.id %}",
+                data: {
+                    'status': status
+                },
+                success: function(data){
+                    $('#status').text(status);
+                    // alert(data.message);
+                }
+            })
+        })
+    })
+</script>
+{% endblock %}

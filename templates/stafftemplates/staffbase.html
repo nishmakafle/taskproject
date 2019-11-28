@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	
+
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+	{% block css %}
+	{% endblock %}
+
+</head>
+
+
+<body class="container-fluid">
+
+
+      <!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color bg-info">
+ 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item {% block home %} {% endblock %} " >
+        <a class="nav-link" href="{% url 'taskapp:staffhome' %}" style="color: white;">Home
+          
+        </a>
+      </li>
+      
+      
+    </ul>
+    <span class="navbar-text">
+      Logged in as: <span class="text-dark">{{request.user}}</span>
+        <a class="d-inline text-white" href="{% url 'taskapp:logout' %}" style="color: white;">Logout</a>
+    </span>
+   
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+{% block content %}
+
+{% endblock %}
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+{% block js %}
+{% endblock %}
+
+</body>
+</html>
+
+
+
+
+

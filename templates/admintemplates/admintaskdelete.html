@@ -1,0 +1,32 @@
+{% extends 'admintemplates/adminbase.html' %}
+
+{% block css %}
+
+
+{% endblock %}
+
+
+{% block content %}
+
+	<div class="row">
+		<div class="col-md-6 mx-auto text-center" >
+			
+				
+				<h3 class="text-center bg-info p-2 text-white">Delete</h3>
+				
+			
+				<form method="post">
+					{% csrf_token %}
+				    <p>Are you sure you want to delete "{{ object }}"?</p>
+				    <input class="btn btn-primary w-10 " type="submit" value="Confirm">
+				</form>
+			
+		</div>
+	</div>
+
+
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}

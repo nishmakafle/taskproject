@@ -1,0 +1,48 @@
+{% extends 'admintemplates/adminbase.html' %}
+
+{% block css %}
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-3">
+        <h4>All Tasks</h4>
+        {% for task in alltasks %}
+            <li><a href="{% url 'taskapp:admintaskdetail' task.id %}">{{task.title}}</a></li>
+        {% endfor %}
+    </div>
+    <div class="col-md-9">
+        <h3 class="text-center bg-info p-1 text-white">Task: {{tasks.title}}</h3>
+
+        <table class="table table-bordered table-striped" style="width: 100%;">
+            <tbody>
+                <tr>
+                    <th>Assigned TO</th>
+                    <td>{{tasks.assigned_to}}</td>
+                </tr>
+                <tr>
+                    <th>Assigned Date</th>
+                    <td>{{tasks.assigned_date}}({{task.assigned_date|timesince}} ago)</td>
+                </tr>
+                <tr>
+                    <th>Task Status</th>
+                    <td id="status">{{tasks.status}}</td>
+                </tr>
+                <tr>
+                    <th>Description</th> 
+                    <td>{{tasks.description|safe}}</td>
+                </tr>
+                <tr>
+                    <th>Deadline</th> 
+                    <td>{{tasks.deadline}}({{tasks.deadline|timeuntil}} remaining)</td>
+                </tr>
+                
+            </tbody>
+        </table>   
+    </div>
+</div>
+
+{% endblock %}

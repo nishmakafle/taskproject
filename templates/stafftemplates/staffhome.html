@@ -1,0 +1,54 @@
+{% extends 'stafftemplates/staffbase.html' %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h3 class="text-center bg-info p-1 text-white">Task List</h3>
+        <a href="{% url 'taskapp:staffhome' %}">All Task</a> |
+        <a href="{% url 'taskapp:staffhome' %}?status=Pending">Pending Tasks</a> |
+        <a href="{% url 'taskapp:staffhome' %}?status=Processing">Processing Tasks</a> |
+        <a href="{% url 'taskapp:staffhome' %}?status=Completed">Completed Tasks</a> 
+
+        <table class="table table-bordered table-striped" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Task</th>
+                    <th>Status</th>
+                    <th>Assigned by</th>
+                    <th>Given at</th>
+                    <th>Deadline</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in alltasks %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><a href="{% url 'taskapp:stafftaskdetail' task.pk %}">{{task.title}}</a></td>
+                    <td>{{task.status}}</td>
+                    <td>{{task.assigned_by}}</td>
+                    <td>{{task.assigned_date}}</td>
+                    <td>{{task.deadline}}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block js %}
+<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready( function () {
+        $('.table').DataTable();
+    } );
+</script>
+{% endblock %}

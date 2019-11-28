@@ -1,0 +1,36 @@
+{% extends 'admintemplates/adminbase.html' %}
+
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <h3 class="text-center bg-info p-2 text-white">Task Form</h3>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4 class="text-danger text-center">{{errors}}</h4>
+            {{form.as_p}}
+           <button class="btn btn-primary w-100">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+<script>
+	$(document).ready(function() {
+	    $('.select2-single').select2();
+	});
+</script>
+{% endblock %}
