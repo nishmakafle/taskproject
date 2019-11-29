@@ -8,17 +8,17 @@
 
 {% block content %}
 
-	<div class="row">
-		<div class="col-md-6 mx-auto text-center" >
+	<div class="row ">
+		<div class="col-md-6 mx-auto text-center m-5 border border-info p-2" >
 			
 				
-				<h3 class="text-center bg-info p-2 text-white">Delete</h3>
+				<h3 class="text-center bg-info p-2 text-white ">Delete</h3>
 				
 			
 				<form method="post">
 					{% csrf_token %}
 				    <p>Are you sure you want to delete "{{ object }}"?</p>
-				    <input class="btn btn-primary w-10 " type="submit" value="Confirm">
+				    <input class="btn btn-primary w-10  " type="submit" value="Confirm">
 				</form>
 			
 		</div>
